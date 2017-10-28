@@ -12,13 +12,20 @@ include Faker
 
 # Create tasks
   15.times do
-    task.create!(
-      title: Faker::Lorem.sentence,
-      private: false
+    task = Task.create!(
+      title: Faker::Lorem.sentence
     )
   end
-  tasks = task.all
+  tasks = Task.all
+
+  5.times do
+    company = Company.create!(
+      name: Faker::Lorem.word
+    )
+  end
+  companys = Company.all
 
 puts "Seed finished"
 puts "#{User.count} users created."
-puts "#{task.count} tasks created."
+puts "#{Task.count} tasks created."
+puts "#{Company.count} companies created."

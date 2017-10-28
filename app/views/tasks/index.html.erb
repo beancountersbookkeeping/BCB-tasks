@@ -3,14 +3,21 @@
 <% @tasks.each do |task| %>
      <div class="media">
      <div class="media-body">
+         <%= task.created_at.to_date %>
          <%= task.title %>
+         <%= task.company.inspect %>
+         <%= task.company.users.inspect %>
          <%= link_to "Delete", task, method: :delete, remote: true %>
      </div>
    </div>
  <% end %>
 
- <script type="text/javascript">
-      $(document).on("ready page:load", function () {
-         blocmetrics.report("Item Completed");
-       })
- </script>
+ <% @companys.each do |c| %>
+   <%= c.name %>
+   <%= c.tasks.inspect%>
+   <%= c.users.inspect %>
+<% end %>
+
+<% @users.each do |u| %>
+   <%= u.inspect %>
+<% end %>

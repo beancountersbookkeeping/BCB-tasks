@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tasks
+  has_many :companys
 
   after_initialize { self.role ||= :standard }
 
-  enum role: [:standard, :admin, :premium]
+  enum role: [:standard, :admin]
 end

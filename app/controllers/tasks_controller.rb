@@ -5,6 +5,8 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    @companys = Company.all
+    @users = User.all
   end
 
   def show
