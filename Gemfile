@@ -6,6 +6,10 @@ gem 'faker'
 gem 'stripe'
 gem 'figaro', '1.0'
 gem 'redcarpet'
+gem "wice_grid", '3.6.0.pre4'
+gem 'font-awesome-sass', '~> 4.3'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-ui-rails'
 
 gem 'devise'
 group :development, :test do

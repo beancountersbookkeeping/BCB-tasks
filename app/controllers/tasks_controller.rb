@@ -7,6 +7,9 @@ class TasksController < ApplicationController
     @tasks = Task.all
     @companys = Company.all
     @users = User.all
+    @tasks_grid = initialize_grid(Task,
+      include: :title
+    )
   end
 
   def show
