@@ -16,7 +16,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task.company.build
     @company = Company.new
     @user = User.new
   end

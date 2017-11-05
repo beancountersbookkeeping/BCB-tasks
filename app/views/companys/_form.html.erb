@@ -1,7 +1,0 @@
-<h1>Form</h1>
-<% form_for @company do |f| -%>
-  Name: <%= f.text_field :name %>
-    <%= render partial: 'task', locals: @company.tasks %>
-  <%= add_task_link "Add task" %>
-  <%= f.submit "submit" %>
-  <% end -%>

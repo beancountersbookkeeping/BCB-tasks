@@ -28,4 +28,4 @@ include Faker
 puts "Seed finished"
 puts "#{User.count} users created."
 puts "#{Task.count} tasks created."
-puts "#{Company.count} companies created."
+puts "#{Company.count} companys created."

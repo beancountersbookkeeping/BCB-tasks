@@ -1,4 +1,4 @@
-class CompanysController < ApplicationController
+class CompaniesController < ApplicationController
   def index
     @companys = Company.all
   end
@@ -6,14 +6,17 @@ class CompanysController < ApplicationController
   def new
     @company = Company.new
     @company.tasks.build
+    @task = Task.new
   end
 
   def create
-    @company = Company.new(params[:company])
+    flash[:notice] = 'here'
+    @company = Company.new
     if @company.save
       flash[:notice] = "successfully saved"
       redirect_to root_path
     else
+      flash[:notice] = "error"
       render :action => 'new'
     end
   end

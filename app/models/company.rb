@@ -8,6 +8,9 @@ class Company < ActiveRecord::Base
     end
   end
 
+  after_update :save_tasks
+
+
   def save_tasks
     tasks.each do |task|
       task.save(false)
