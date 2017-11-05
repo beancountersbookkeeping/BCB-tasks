@@ -1,26 +1,3 @@
-<h1>All Tasks</h1>
-     <%= link_to "New Task", new_task_path(@task), class: 'btn btn-success' %>
-
-<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g|
-   g.column name: 'Date Created', attribute: 'created_at' do |task|
-     task.created_at.to_date
-   end
-   g.column name: 'Task', attribute: 'title'
-
-  g.column name: 'Company', assoc: :company, attribute: 'name'
-
-  g.column name: 'User', assoc: :user, attribute: 'email'
-
-  g.column name: 'Complete', attribute: 'archived' do |task|
-    task.archived? ? 'Yes':'No'
-    link_to 'No', task, :method => :delete
-  end
-
-  g.column name: 'Timer', attribute: 'time' do |task|
-    #render partial: 'timer', locals: @task
-  end
-
-end -%>
 
 <html>
 <head>

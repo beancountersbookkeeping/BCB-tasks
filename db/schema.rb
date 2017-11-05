@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028113052) do
+ActiveRecord::Schema.define(version: 20171103141928) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171028113052) do
     t.datetime "updated_at", null: false
     t.integer  "company_id"
     t.boolean  "archived"
+    t.integer  "time"
   end
 
   add_index "tasks", ["company_id"], name: "index_tasks_on_company_id"

@@ -7,9 +7,7 @@ class TasksController < ApplicationController
     @tasks = Task.all
     @companys = Company.all
     @users = User.all
-    @tasks_grid = initialize_grid(Task,
-      include: :title
-    )
+    @tasks_grid = initialize_grid(Task)
   end
 
   def show
@@ -18,6 +16,9 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @task.company.build
+    @company = Company.new
+    @user = User.new
   end
 
   def create
@@ -35,14 +36,8 @@ class TasksController < ApplicationController
 
    def destroy
      @task = Task.find(params[:id])
-
-     if @task.destroy
-       flash[:notice] = "\"#{@task.title}\" was deleted successfully."
-       redirect_to root_path
-     else
-       flash.now[:alert] = "There was an error deleting."
-       redirect_to root_path
-     end
+     @task.archived = false
+     @task.save
    end
 
 end
