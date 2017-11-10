@@ -1,17 +1,7 @@
  <h1>New Task</h1>
 
- <div class="row">
-   <div class="col-md-8">
-     <%= form_for @task do |f| %>
-       <div class="form-group">
-         <%= f.label :title %>
-         <%= f.text_field :title, class: 'form-control', placeholder: "Enter title" %>
-         <%= f.label :company %>
-         <%= f.text_field :company, class: 'form-control', placeholder: "Enter Company" %>
-       </div>
-       <div class="form-group">
-         <%= f.submit "Save", class: 'btn btn-success' %>
-       </div>
-     <% end %>
-   </div>
- </div>
+  <%= form_for [@company, @task] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter title" %>
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  <% end %>

@@ -1,6 +1,7 @@
 <%= form_for @company do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Company' %>
-  <%= render partial: 'task', object: @company.tasks %>
+  <%= form_tag(company[:name]) do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+  <% end %>
   <%= f.submit "Save", class: 'btn btn-success' %>
-  <% end -%>
+<% end %>

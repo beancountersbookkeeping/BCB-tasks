@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'tasks#index'
 
-  resources :tasks
-  resources :users
-  resources :companies
+  resources :users do
+    resources :tasks
+  end
+  resources :companies do
+    resources :tasks
+  end 
+
+  root 'tasks#index'
 
 end

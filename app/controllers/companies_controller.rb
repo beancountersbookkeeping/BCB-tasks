@@ -1,16 +1,21 @@
 class CompaniesController < ApplicationController
   def index
-    @companys = Company.all
+    @companies = Company.all
+  end
+
+  def show
+    @company = Company.find(params[:id])
   end
 
   def new
     @company = Company.new
-    @company.tasks.build
-    @task = Task.new
+  end
+
+  def edit
+    @company = Company.find(params[:id])
   end
 
   def create
-    flash[:notice] = 'here'
     @company = Company.new
     if @company.save
       flash[:notice] = "successfully saved"
@@ -20,4 +25,29 @@ class CompaniesController < ApplicationController
       render :action => 'new'
     end
   end
+
+ def update
+   @company = Company.find(params[:id])
+
+   if @company.save
+     flash[:notice] = "Saved"
+     redirect_to root_path
+   else
+     flash[:notice] = "Error"
+     redirect_to root_path
+  end
+end
+
+def destroy
+  @company = Company.find(params[:id])
+
+  if @company.destroy
+    flash[:notice] = "Saved"
+    redirect_to root_path
+  else
+    flash[:notice] = "Error"
+    redirect_to root_path
+  end
+end 
+
 end

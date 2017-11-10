@@ -1,6 +1,6 @@
-class Createcompanys < ActiveRecord::Migration
+class CreateCompanies < ActiveRecord::Migration
   def change
-    create_table :companys do |t|
+    create_table :companies do |t|
       t.string :name
 
       t.timestamps null: false

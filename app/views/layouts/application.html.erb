@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Tasks</title>
-  <h1> BCB Tasks </h1>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,10 +15,11 @@
      <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
      <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
    <% end %>
-
+   <h1> BCB Tasks </h1>
      <div class="container">
      <ul class="nav nav-tabs">
        <li><%= link_to "Task", root_path %></li>
+       <li><%= link_to "Companies", companies_path %></li>
      </ul>
      <% if flash[:notice] %>
        <div class="alert alert-success">

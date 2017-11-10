@@ -1,6 +1,6 @@
 class AddUserToCompany < ActiveRecord::Migration
   def change
-    add_column :companys, :user_id, :integer
-    add_index :companys, :user_id
+    add_column :companies, :user_id, :integer
+    add_index :companies, :user_id
   end
 end

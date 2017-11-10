@@ -15,21 +15,22 @@ class TasksController < ApplicationController
   end
 
   def new
+    @company = Company.find(params[:company_id])
     @task = Task.new
-    @company = Company.new
     @user = User.new
   end
 
   def create
-    @task = Task.new
-    @task.title = params[:task][:title]
+    @company = Company.find(params[:company_id])
+    @task = @company.tasks.build
+
 
     if @task.save
       flash[:notice] = "Task was saved."
-      redirect_to tasks_path
+      redirect_to root_path
     else
       flash.now[:alert] = "There was an error saving. Please try again."
-      redirect_to tasks_path
+      redirect_to root_path
     end
   end
 
