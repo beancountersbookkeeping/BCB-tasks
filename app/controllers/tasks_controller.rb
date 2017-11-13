@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   include ApplicationHelper
-
+  skip_before_action :verify_authenticity_token, only: [:save_time]
   before_filter :authenticate_user!
 
   def index
@@ -15,23 +15,20 @@ class TasksController < ApplicationController
   end
 
   def new
-    @company = Company.find(params[:company_id])
-    @task = Task.new
-    @user = User.new
+    @company_id = params[:company_id]
+    
   end
 
-  def create
-    @company = Company.find(params[:company_id])
-    @task = @company.tasks.build
-
-
-    if @task.save
-      flash[:notice] = "Task was saved."
-      redirect_to root_path
+  def create    
+    @errors = Task.save_task_errors(params, current_user)
+    if @errors == "" then
+      Task.save_task(params, current_user)
+      flash[:notice] = "Task was successfully saved."
+      redirect_to :controller => 'companies', :action => 'show', :id => params[:task][:company_id]
     else
-      flash.now[:alert] = "There was an error saving. Please try again."
-      redirect_to root_path
-    end
+      flash.now[:alert] = @errors 
+      render :action => 'new', :company_id => params[:company_id]
+    end    
   end
 
    def destroy
@@ -39,5 +36,9 @@ class TasksController < ApplicationController
      @task.archived = false
      @task.save
    end
+
+  def save_time
+    Task.save_time(params)
+  end
 
 end

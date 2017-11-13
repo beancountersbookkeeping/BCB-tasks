@@ -1,2 +1,7 @@
 <h1>New Company<h1>
-  <%= render partial: 'form', locals: { company: @company } %>
+ <%= form_for Company.new, :method => 'POST', url: create_company_path do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+    <%= f.collection_select :user_id, @users.all, :id, :email %>
+  <%= f.submit "Save", class: 'btn btn-success' %>
+ <% end %>

@@ -1,3 +1,8 @@
 <h1>Edit Company</h1>
-<%= render partial: 'form', locals: { company: @company } %>
-<%= link_to "Delete", company, method: :delete %>
+ <%= form_for @company do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+    <%= f.collection_select :user_id, @users.all, :id, :email %>
+  <%= f.submit "Save", class: 'btn btn-success' %>
+ <% end %>
+<%= link_to "Delete Company", @company, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this company?'} %>

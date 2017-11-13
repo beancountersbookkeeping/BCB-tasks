@@ -2,12 +2,21 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users do
-    resources :tasks
-  end
-  resources :companies do
-    resources :tasks
-  end 
+  resources :users 
+
+  get 'companies/all', to: 'companies#index', as: 'companies'
+  get 'companies/new', to: 'companies#new', as: 'new_company'
+  post 'companies/create', to: 'companies#create', as: 'create_company'
+  get 'company/:id', to: 'companies#show', as: 'company'
+  get 'company/:id/edit', to: 'companies#edit', as: 'edit_company'
+  patch 'company/:id/edit', to: 'companies#update'
+  put 'company/:id/edit', to: 'companies#update'
+  delete 'company/:id', to: 'companies#destroy', as: 'delete_company'
+
+  get 'tasks/:company_id/new', to: 'tasks#new', as: 'new_task'
+  post 'tasks/create', to: 'tasks#create', as: 'create_task'
+  get 'tasks/:task_id', to: 'tasks#show', as: 'task'
+  post 'tasks/save_time', to: 'tasks#save_time', as: 'save_time'
 
   root 'tasks#index'
 

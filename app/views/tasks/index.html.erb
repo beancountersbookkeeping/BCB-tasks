@@ -1,6 +1,59 @@
+    <script>
+        window.onload = function() {
+            var timer = new Tock({
+                callback: function () {
+                    $('#clockface').val(timer.msToTime(timer.lap()));
+                }
+            });
+            $('#start').on('click', function () {
+                timer.start($('#clockface').val());
+            });
+            $('#lap').on('click', function () {
+                $('#laptimes').append(timer.msToTime(timer.lap()) + '<br>');
+            });
+            $('#pause').on('click', function () {
+                timer.pause();
+            });
+            $('#stop').on('click', function () {
+                timer.stop();
+            });
+            $('#reset').on('click', function () {
+                timer.reset();
+                $('#clockface').val('');
+                $('#laptimes').html('');
+            });
+            var countdown = Tock({
+                countdown: true,
+                interval: 250,
+                callback: function () {
+                    console.log(countdown.lap() / 1000);
+                    $('#countdown_clock').val(timer.msToTime(countdown.lap()));
+                },
+                complete: function () {
+                    console.log('end');
+                    alert("Time's up!");
+                }
+            });
+            $('#startCountdown').on('click', function () {
+                countdown.start($('#countdown_clock').val());
+            });
+            $('#pauseCountdown').on('click', function () {
+                countdown.pause();
+            });
+            $('#stopCountdown').on('click', function () {
+                countdown.stop();
+            });
+            $('#resetCountdown').on('click', function () {
+                countdown.stop();
+                $('#countdown_clock').val('00:02');
+            });
+        }
+    </script>
+
 <h1>All Tasks</h1>
 
-<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g|
+<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g| 
+   g.column name: 'Task', attribute: 'id'
    g.column name: 'Date Created', attribute: 'created_at' do |task|
      task.created_at.to_date
    end
@@ -19,4 +72,20 @@
     render partial: 'timer', locals: @task
   end
 
-end %>
+ end %>
+
+Task ID: <input id="task_id" type="text" /> </br>
+Task Time value: <input id="time_value" /> </br>
+<button id="save_time">Save time</button>
+
+<script>
+ $("#save_time").click(function(){
+   var task_id = String($("#task_id").val()); //parent().parent().parent().children().first()
+   var time_value = String($("#time_value").val());
+   if(task_id != "" && time_value != ""){
+   $.post('/tasks/save_time', {time: time_value, task_id: task_id});
+   }
+
+ });
+
+</script>

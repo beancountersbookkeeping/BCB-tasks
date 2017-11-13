@@ -1,7 +1,6 @@
 <%= form_for @company do |f| %>
-  <%= form_tag(company[:name]) do %>
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', placeholder: "Enter name" %>
-  <% end %>
-  <%= f.submit "Save", class: 'btn btn-success' %>
+   <%= f.label :name %>
+   <%= f.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+   <%= f.collection_select :user_id, @users.all, :id, :email %>
+ <%= f.submit "Save", class: 'btn btn-success' %>
 <% end %>
