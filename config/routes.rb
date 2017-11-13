@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users 
+  resources :users
 
   get 'companies/all', to: 'companies#index', as: 'companies'
   get 'companies/new', to: 'companies#new', as: 'new_company'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'tasks/create', to: 'tasks#create', as: 'create_task'
   get 'tasks/:task_id', to: 'tasks#show', as: 'task'
   post 'tasks/save_time', to: 'tasks#save_time', as: 'save_time'
+  delete 'tasks/:task_id/delete', to: 'tasks#destroy'
 
   root 'tasks#index'
 

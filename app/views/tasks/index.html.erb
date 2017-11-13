@@ -52,7 +52,7 @@
 
 <h1>All Tasks</h1>
 
-<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g| 
+<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g|
    g.column name: 'Task', attribute: 'id'
    g.column name: 'Date Created', attribute: 'created_at' do |task|
      task.created_at.to_date
@@ -65,7 +65,7 @@
 
   g.column name: 'Complete', attribute: 'archived' do |task|
     task.archived? ? 'Yes':'No'
-    #link_to 'No', task, :method => :delete
+    link_to 'No', @task, :method => :destroy
   end
 
   g.column name: 'Timer', attribute: 'time' do |task|
