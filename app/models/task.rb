@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
-  belongs_to :company, dependent: :destroy
+  belongs_to :user
+  belongs_to :company
 
   def self.save_task_errors(params, current_user)
     @errors = ""

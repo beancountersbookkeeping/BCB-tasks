@@ -33,26 +33,26 @@ class CompaniesController < ApplicationController
   end
 
  def update
-   @company = Company.find(params[:id])
-
-   if @company.save
-     flash[:notice] = "Saved"
-     redirect_to root_path
+   @errors = Company.update_company_errors(params)
+   if @errors == "" then
+     Company.update_company(params)
+     flash[:notice] = "Company was successfully updated."
+     redirect_to companies_path
    else
-     flash[:notice] = "Error"
-     redirect_to root_path
+     flash[:error] = @errors
+     redirect_to :back
+   end
   end
-end
 
 def destroy
   @company = Company.find(params[:id])
-
-  if @company.destroy
-    flash[:notice] = "Saved"
-    redirect_to root_path
+  if @company != nil then 
+    Company.destroy_company(@company)
+    flash[:notice] = "Company and all of its tasks have been destroyed."
+    redirect_to companies_path
   else
-    flash[:notice] = "Error"
-    redirect_to root_path
+    flash[:notice] = "No such company"
+    redirect_to :back
   end
 end
 
