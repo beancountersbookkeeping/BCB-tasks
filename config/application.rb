@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 
 module Workspace
   class Application < Rails::Application
-   
+   config.assets.initialize_on_precompile = false
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << File.join(config.root, "lib")
