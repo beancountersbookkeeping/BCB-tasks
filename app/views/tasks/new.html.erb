@@ -1,8 +1,17 @@
+<div class="container"> 
  <h1>New Task</h1>
-
-  <%= form_for Task.new, :method => 'POST', url: create_task_path do |f| %>
+ <div class="col-sm-4">
+  <%= form_for Task.new, :method => 'POST', :class => 'form-inline', url: create_task_path do |f| %>
     <%= f.hidden_field :company_id, value: @company_id %>
+   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter title" %>
-    <%= f.submit "Save", class: 'btn btn-success' %>
+   </div>
+   <div class="form-group"> 
+    <%= f.label :recreate_task_days %>
+    <%= f.text_field :recreate_task_days, class: 'form-control', placeholder: "Enter days" %>
+   </div>
+    <%= f.submit "Save task", class: 'btn btn-success' %>
   <% end %>
+ </div>
+</div>

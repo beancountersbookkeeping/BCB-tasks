@@ -50,41 +50,21 @@
         }
     </script>
 <div class="container">
-  <h1>All Tasks&nbsp;<%= link_to "Recreate tasks", recreate_tasks_path, :class => "btn btn-primary btn-sm", :style => 'font-color:white;'%>
-</h1>
+  <h1>All companies</h1>
 </div>
 </br>
 <div class="clear"></div>
 </br>
  <div class="col-sm-12">
-<%= grid(@tasks_grid, show_filters: :always, upper_pagination_panel: true) do |g|
-   g.column name: 'Task', attribute: 'id'   
-   g.column name: 'Task', attribute: 'title'
-
-  g.column name: 'Company', assoc: :company, attribute: 'name'
-
-  g.column name: 'User', assoc: :user, attribute: 'email'
-
-#, custom_filter: Archived.to_dropdown, auto_reload:  true
-  g.column name:  'Complete', attribute: 'archived', auto_reload:  true  do |task|
-    task.archived? ? 'yes' : 'no'
-  end
-  g.column name: 'Date Created', attribute: 'created_at' do |task|
+<%= grid(@companies_grid, show_filters: :always, upper_pagination_panel: true) do |g|
+   g.column name: 'ID', attribute: 'id'   
+   g.column name: 'Name', attribute: 'name'
+   g.column name: 'User id', attribute: 'user_id'
+   g.column name: 'Date Created', attribute: 'created_at' do |task|
      task.created_at.to_date
    end
-  g.column name: 'Recreate task days', attribute: 'recreate_task_days'
-  g.column name: 'Timer', attribute: 'time' do |task|
-    render partial: 'timer', locals: @task
-  end
 
  end %>
-</div>
- <div class="col-sm-4">
-  <label for="task_id">Task ID:</label></br>
-  <input id="task_id" type="text" /> </br></br>
-  <label for="time_value">Task Time value:</label></br>
-  <input id="time_value" /> </br>
-  <button id="save_time" class="btn btn-success" style="margin-top:10px;">Save time</button>
 </div>
 </br></br></br>
 <script>

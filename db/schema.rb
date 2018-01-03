@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103141928) do
+ActiveRecord::Schema.define(version: 20171116190902) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20171103141928) do
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "company_id"
     t.boolean  "archived"
     t.integer  "time"
+    t.integer  "recreate_task_days"
   end
 
   add_index "tasks", ["company_id"], name: "index_tasks_on_company_id"

@@ -15,8 +15,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @company_id = params[:company_id]
-    
+    @company_id = params[:company_id]    
   end
 
   def create    
@@ -39,6 +38,12 @@ class TasksController < ApplicationController
 
   def save_time
     Task.save_time(params)
+  end
+
+  def recreate_tasks
+    Task.create_todays_tasks
+    redirect_to :back
+    #render layout: false
   end
 
 end
