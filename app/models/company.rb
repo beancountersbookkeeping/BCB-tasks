@@ -48,6 +48,7 @@ class Company < ActiveRecord::Base
     company.destroy
   end
 
+<<<<<<< HEAD
   def self.generate_random_companies(n)
     ActiveRecord::Base.connection.execute("delete from companies")
     @user_ids = User.all.pluck(:id)
@@ -58,5 +59,7 @@ class Company < ActiveRecord::Base
     end
     puts n.to_s + " random companies have been generated."
   end
+=======
+>>>>>>> origin/master
 
 end
