@@ -50,7 +50,7 @@
         }
     </script>
 <div class="container">
-  <h1>All companies</h1>
+  <h1>All companies&nbsp;<%= link_to "New company", new_company_path, :class => "btn btn-success btn-sm"%>&nbsp;</h1>
 </div>
 </br>
 <div class="clear"></div>
@@ -63,11 +63,23 @@
    g.column name: 'Date Created', attribute: 'created_at' do |task|
      task.created_at.to_date
    end
-
+   g.column name: 'Edit' do |company|
+     link_to('Show', company_path(company.id), :class => 'btn btn-warning btn-sm')
+   end
+   g.column name: 'Edit' do |company|
+     link_to('Edit', edit_company_path(company.id), :class => 'btn btn-primary btn-sm')
+   end
+   g.column name: 'Delete' do |company|
+     link_to('Delete', delete_company_path(company.id), :class => 'btn btn-danger btn-sm')
+   end
  end %>
 </div>
 </br></br></br>
 <script>
+  
+  $("#li_companies").addClass('active');
+
+
  $("#save_time").click(function(){
    var task_id = String($("#task_id").val()); //parent().parent().parent().children().first()
    var time_value = String($("#time_value").val());

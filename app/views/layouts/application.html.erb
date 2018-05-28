@@ -13,24 +13,26 @@
       <a class="navbar-brand" href="/">BCB Tasks</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><%= link_to "Tasks", root_path %></li>
-      <li><%= link_to "Companies", companies_report_path %></li>  
-      <li><%= link_to "Show companies", companies_path %></li>      
+    <% if current_user != nil then %>
+     <% if current_user.role.to_s == "admin" then %>
+      <li id="li_home" class="li_active"><a href="/">Home</a></li>
+      <li id="li_tasks" class="li_active"><%= link_to "Tasks", admin_tasks_path %></li>     
+      <li id="li_companies" class="li_active"><%= link_to "Companies", companies_report_path %></li>  
+     <% end %> 
+    <% end %>     
     </ul>
     <ul class="nav navbar-nav" style="float:right;">
       <% if user_signed_in? %>
-       <li><%= link_to current_user.email, root_path %></li>        
-       <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'float_right' %></li>
-       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'float_right'  %></li>
+       <li id="li_show_user" class="li_active"><%= link_to current_user.email, show_user_path(current_user.id) %></li>        
+       <li id="li_edit_profile" class="li_active"><%= link_to 'Edit profile', edit_user_registration_path, :class => 'float_right' %></li>
+       <li class="li_active"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'float_right'  %></li>
       <% else %>        
-       <li><%= link_to "Sign Up", new_user_registration_path, :class => 'float_right'  %></li>
-       <li><%= link_to "Sign In", new_user_session_path, :class => 'float_right'  %></li>
+       <li class="li_active"><%= link_to "Sign Up", new_user_registration_path, :class => 'float_right'  %></li>
+       <li class="li_active"><%= link_to "Sign In", new_user_session_path, :class => 'float_right'  %></li>
       <% end %>
     </ul>
    </div>
   </nav>   
-
      <% if flash[:notice] != nil%>
        <div class="alert alert-success col-sm-4">
          <%= flash[:notice] %>
@@ -42,6 +44,9 @@
      <% end %>
 <div class="clear"></div>
 <%= yield %>
+<script>
+  $("#error_explanation>h2").hide();
 
+</script>
 </body>
 </html>
